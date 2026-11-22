@@ -1,0 +1,15 @@
+html,body{margin:0;height:100%;overflow:hidden;background:#84c669;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+canvas{display:block;width:100%;height:100%}
+#ui{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+.panel{display:none;box-sizing:border-box;width:min(340px,88vw);max-height:90vh;overflow:auto;padding:22px 26px;text-align:center;color:#fff;font-weight:700;text-shadow:0 2px 0 rgba(0,0,0,.45);
+  border:18px solid transparent;border-image:url(assets/ui_panel.png) 40 fill / 18px}
+.panel h1{margin:0 0 14px;font-size:38px;letter-spacing:1px}
+.panel h2{margin:0 0 12px;font-size:26px}
+.panel p{font-size:15px;line-height:1.4;text-align:left;margin:8px 0}
+.panel button{display:block;width:100%;margin:10px 0;padding:10px;color:#fff;font:inherit;font-size:19px;text-shadow:0 2px 0 rgba(0,0,0,.45);cursor:pointer;background:none;
+  border:14px solid transparent;border-image:url(assets/ui_button.png) 45 fill / 14px}
+.panel button:active{transform:scale(.96)}
+.panel button:disabled{filter:grayscale(1);opacity:.55;cursor:default}
+.panel label{display:block;text-align:left;margin:14px 0;font-size:16px}
+.panel input[type=range]{width:100%;accent-color:#e02b2b}
+.ver{font-size:12px;opacity:.8;margin-top:10px}
