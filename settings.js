@@ -68,10 +68,25 @@ window.AV_SETTINGS = {
     medic: {
       hp: 40,
       sight: 99,
-      speed: 0.5,
-      threshold: 0.4,   // carries villagers below this share of HP to a Hospital
+      speed: 1,   // Идеи 2026-11-23: twice as fast (was 0.5)
+      threshold: 0.5,   // carries villagers below this share of HP to a Hospital
       grab: 1,   // picks a patient up from this distance
       carrySpeed: 0.7,   // speed multiplier while carrying a patient
+    },
+    archer: {
+      hp: 30,
+      sight: 99,   // shoots enemies this far (99 = whole field)
+      speed: 0.3,
+      damage: 8,   // damage per arrow
+      range: 3,   // shoots from this distance
+      every: 1.5,   // one arrow every N s
+      arrowSpeed: 4,
+    },
+    assassin: {
+      hp: 30,
+      sight: 99,   // hunts ranged enemies (Fire Mages) first, then any enemy
+      speed: 0.8,
+      damage: 12,
     },
     cyclops: {
       hp: 50,
@@ -96,7 +111,7 @@ window.AV_SETTINGS = {
       speed: 0.12,
       damage: 5,   // fireball damage to everything in the blast
       size: 0.8,
-      range: 3,   // shoots from this distance
+      range: 2,   // shoots from this distance (was 3), and only once it is on the field
       every: 2,   // one fireball every N s
       blast: 0.6,   // blast radius
       fireballSpeed: 3,
@@ -139,6 +154,14 @@ window.AV_SETTINGS = {
       damage: 15,   // damage to the prisoner ...
       every: 3,   // ... every N s
     },
+    archerTower: {
+      hp: 40,
+      shelter: 3,
+    },
+    hideout: {
+      hp: 30,
+      shelter: 3,
+    },
     turret: {
       hp: 50,
       damage: 20,   // damage per arrow
@@ -149,8 +172,8 @@ window.AV_SETTINGS = {
   },
   levels: {
     xpBase: 10,   // XP from level L to L+1 = xpBase x L x L
-    knightXp: 10,   // XP a Knight gets per Cyclops it kills
-    knightHp: 5,   // Knight max HP per level
+    knightXp: 10,   // XP a Knight / Archer / Assassin gets per enemy it kills
+    knightHp: 5,   // Knight / Archer / Assassin max HP per level
     builderWorkPerXp: 5,   // a Builder gets 1 XP per N hits of building / HP repaired
     builderBonus: 0.05,   // Builder build / repair speed per level (+5%)
     jailerSpeedBonus: 0.05,   // Jailer move speed per level (+5%)
@@ -166,13 +189,29 @@ window.AV_SETTINGS = {
     },
     plague: {
       duration: 30,
-      minShare: 0.1,   // share of villagers that fall sick: random between min ...
-      maxShare: 0.3,   // ... and max (at least 1)
+      patients: 1,   // villagers that fall sick at the start
+      zeroSpeed: 1.5,   // the first patients move this much faster while the plague lasts
       damagePerSecond: 1,   // HP the sick lose per second outside the Hospital
     },
     quake: {
       duration: 5,   // shaking time; every building is hit once during it
       maxDamage: 0.5,   // random damage up to this share of the building's max HP
+    },
+  },
+  skills: {
+    aimTime: 15,   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
+    fire: {
+      radius: 1.5,   // every enemy this close to the tapped point catches fire
+      damagePerSecond: 5,
+      duration: 4,
+    },
+    freeze: {
+      radius: 1.5,
+      duration: 5,   // frozen enemies can't move or attack
+    },
+    lightning: {
+      radius: 1.2,
+      damage: 40,   // instant damage to every enemy in the radius
     },
   },
 };
