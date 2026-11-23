@@ -18,7 +18,21 @@ window.AV_SETTINGS = {
     interval: 60,   // time between waves
     warning: 2,   // the "Wave N" ribbon shows this long before the enemies come
     spacing: 0.25,   // time between the enemies of one wave
-    sizes: [1, 2, 5, 5, 10, 5, 15, 20, 50],   // enemies per wave; the list repeats after the last one
+    // Идеи 2026-11-24 (adaptive waves, user decision: replaces the fixed list): enemies per wave =
+    // village strength x perStrength x (1 + growth x (wave - 1)), at least min, at most max
+    min: 1,   // smallest wave
+    max: 60,   // biggest wave
+    perStrength: 0.25,   // enemies per strength point
+    growth: 0.15,   // each wave is this much bigger for the same strength
+    strength: {
+      villager: 1,   // strength of a level-1 worker (Builder, Jailer, Medic, Farmer)
+      fighter: 2,   // ... of a level-1 Knight, Archer, Assassin or Commander
+      heavyKnight: 4,   // ... of a level-1 Heavy Knight
+      perLevel: 0.5,   // + this share of it per level above 1
+      turret: 2,   // per finished Turret
+      jail: 1,   // per finished Jail
+      hospital: 1,   // per finished Hospital
+    },
     mix: {
       goblin: {
         from: 2,   // from this wave on ...
@@ -87,6 +101,32 @@ window.AV_SETTINGS = {
       sight: 99,   // hunts ranged enemies (Fire Mages) first, then any enemy
       speed: 0.8,
       damage: 12,
+    },
+    commander: {
+      hp: 50,
+      sight: 99,
+      speed: 0.3,
+      damage: 8,
+      squad: 5,   // gathers up to this many fighters (Knights, Archers, Assassins, Heavy Knights)
+      recruit: 6,   // picks free fighters within this distance
+      fight: 2.5,   // the squad fights enemies this close to the Commander
+      keepApart: 4,   // Commanders keep at least this far from each other
+    },
+    heavyKnight: {
+      hp: 120,
+      sight: 99,
+      speed: 0.25,
+      damage: 12,   // to every enemy within the radius ...
+      radius: 1,   // ... around it
+      every: 1.5,   // ... every N s
+      size: 1.7,
+    },
+    farmer: {
+      hp: 40,
+      sight: 99,
+      speed: 0.4,
+      plant: 3,   // time to sow a farm
+      harvest: 3,   // time to bring the harvest in
     },
     cyclops: {
       hp: 50,
@@ -162,6 +202,28 @@ window.AV_SETTINGS = {
       hp: 30,
       shelter: 3,
     },
+    commandPost: {
+      hp: 40,
+      shelter: 3,
+    },
+    farm: {
+      hp: 40,
+      size: 2,   // tiles per side
+      grow: 60,   // wheat ripens this long after sowing
+      yield: 20,   // food per harvest
+    },
+    townHall: {
+      hp: 150,
+      size: 2,
+      fieldSize: 6,   // appears in the centre once the field reaches N x N
+      xpBonus: 0.5,   // villagers get this much more XP while it stands (+50%)
+    },
+    castle: {
+      hp: 300,
+      size: 4,
+      fieldSize: 12,   // replaces the Town Hall once the field reaches N x N
+      xpBonus: 0.5,   // keeps the Town Hall's XP bonus
+    },
     turret: {
       hp: 50,
       damage: 20,   // damage per arrow
@@ -197,6 +259,20 @@ window.AV_SETTINGS = {
       duration: 5,   // shaking time; every building is hit once during it
       maxDamage: 0.5,   // random damage up to this share of the building's max HP
     },
+  },
+  food: {
+    start: 30,   // food the village starts with
+    every: 40,   // each villager eats once every N s ...
+    builder: 1,   // ... this much food (per villager type)
+    knight: 2,
+    jailer: 1,
+    medic: 1,
+    archer: 1,
+    assassin: 1,
+    commander: 2,
+    heavyKnight: 3,
+    farmer: 1,
+    hungry: 0.7,   // a hungry villager's speed, damage and work speed are multiplied by this until it eats
   },
   skills: {
     aimTime: 15,   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
