@@ -64,6 +64,7 @@ window.AV_SETTINGS = {
       fear: 3,   // gets scared when an enemy comes this close
       repair: 5,   // HP repaired per hit (one hit per action interval)
       fearDelay: 2,   // a scared Builder runs to a shelter by itself after this long
+      perSite: 3,   // at most this many Builders work on one building
     },
     knight: {
       hp: 40,
@@ -106,10 +107,12 @@ window.AV_SETTINGS = {
       hp: 50,
       sight: 99,
       speed: 0.3,
-      damage: 8,
-      squad: 5,   // gathers up to this many fighters (Knights, Archers, Assassins, Heavy Knights)
-      recruit: 6,   // picks free fighters within this distance
-      fight: 2.5,   // the squad fights enemies this close to the Commander
+      squad: 5,   // gathers up to this many fighters (Knights, Archers, Assassins, Heavy Knights); the Commander itself doesn't fight
+      recruit: 99,   // picks free fighters within this distance (99 = whole field)
+      fight: 3,   // the squad fights enemies this close to the Commander
+      lead: 2.5,   // stops this far from the enemy group it leads the squad to
+      rally: 2,   // waits until its squad is on average this close before moving on
+      danger: 1.5,   // an enemy this close (or a hit in the last 2 s) sends it back to its squad
       keepApart: 4,   // Commanders keep at least this far from each other
     },
     heavyKnight: {
@@ -169,6 +172,7 @@ window.AV_SETTINGS = {
     interval: 1,   // every unit hits / builds / repairs once per N s
     range: 0.6,   // ... from this distance
     dropRadius: 0.9,   // a dropped unit enters a building if released this close to it
+    spacing: 0.5,   // villagers keep about this far apart (gentle push; enemies pass through)
     autoHeal: 0.3,   // villagers below this share of HP walk to a free Hospital bed by themselves
   },
   buildings: {
@@ -210,7 +214,7 @@ window.AV_SETTINGS = {
       hp: 40,
       size: 2,   // tiles per side
       grow: 60,   // wheat ripens this long after sowing
-      yield: 20,   // food per harvest
+      yield: 10000,   // food per harvest (Идеи 2026-11-24)
     },
     townHall: {
       hp: 150,
