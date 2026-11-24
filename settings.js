@@ -214,7 +214,7 @@ window.AV_SETTINGS = {
       hp: 40,
       size: 2,   // tiles per side
       grow: 60,   // wheat ripens this long after sowing
-      yield: 10000,   // food per harvest (Идеи 2026-11-24)
+      yield: 100,   // food per harvest (Идеи 2026-11-24: 100; was 10000, before that 20)
     },
     townHall: {
       hp: 150,
@@ -282,6 +282,7 @@ window.AV_SETTINGS = {
     commander: 2,
     heavyKnight: 3,
     farmer: 1,
+    carry: 6,   // the Farmer takes up to this much food from the Farm per trip (the store goes down only then)
     duration: 30,   // ... and lasts this long:
     fighterBonus: 1.5,   // fighters (Knight, Archer, Assassin, Commander, Heavy Knight) hit this much harder
     workerBonus: 1.5,   // everyone else runs this much faster
