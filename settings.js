@@ -227,6 +227,12 @@ window.AV_SETTINGS = {
       size: 4,
       fieldSize: 12,   // replaces the Town Hall once the field reaches N x N
       xpBonus: 0.5,   // keeps the Town Hall's XP bonus
+      volleyEvery: 5,   // trebuchet: a volley every N s at an enemy near the village edge ...
+      stones: 5,   // ... of this many stones ...
+      stoneDamage: 12,   // ... each hurting enemies ...
+      stoneRadius: 0.5,   // ... this close to where it lands
+      spread: 0.8,   // stones land up to this far from the target
+      edgeRange: 2.5,   // targets enemies this close to the village edge (the wall, or the field border)
     },
     turret: {
       hp: 50,
@@ -285,11 +291,18 @@ window.AV_SETTINGS = {
     speed: 1.5,   // villagers walk this much faster on a road
     hp: 20,   // a road tile's health: enemies walking on it wear it down (their damage per action), meteors hit it; idle Builders repair it
   },
+  wall: {   // built after the Castle appears (on a new outer ring; it stays when the village grows further)
+    hp: 80,   // health of a wall tile / gate; at 0 it breaks and Builders rebuild it
+    work: 4,   // time a Builder needs to build one wall tile (and to repair a broken-down one to full)
+    gatesMin: 1,   // gates per side: villagers pass, enemies don't
+    gatesMax: 3,
+  },
   skills: {
-    aimTime: 15,   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
+    aimTime: 15,
+    radiusPerRing: 0.25,   // every ring the field grows adds this much to every skill's radius   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
     fire: {
       radius: 1.5,   // every enemy this close to the tapped point catches fire
-      damagePerSecond: 5,
+      damagePerSecond: 20,   // Идеи 2026-11-24: x4 (was 5)
       duration: 4,
     },
     freeze: {
@@ -298,7 +311,7 @@ window.AV_SETTINGS = {
     },
     lightning: {
       radius: 1.2,
-      damage: 40,   // instant damage to every enemy in the radius
+      damage: 160,   // instant damage to every enemy in the radius (Идеи 2026-11-24: x4, was 40)
     },
   },
 };
