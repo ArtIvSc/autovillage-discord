@@ -290,7 +290,12 @@ window.AV_SETTINGS = {
   roads: {
     work: 3,   // time a Builder needs to pave one tile (idle Builders pave free tiles next to buildings)
     speed: 1.5,   // villagers walk this much faster on a road
-    hp: 20,   // a road tile's health: enemies walking on it wear it down (their damage per action), meteors hit it; idle Builders repair it
+    hp: 20,   // a road tile's health (roads are no longer damaged by enemies or meteors since 2026-11-24)
+  },
+  towns: {   // new villages (Идеи 2026-11-24): once the wall is finished, Builders lay a road from a gate to a new village
+    roadLength: 15,   // tiles of road from the gate
+    startSize: 2,   // a new village starts as N x N tiles at the end of the road and grows by rings as buildings are placed
+    nextAt: 6,   // when the newest village has grown to N x N, the next road starts from another gate
   },
   wall: {   // built after the Castle appears (on a new outer ring; it stays when the village grows further)
     hp: 80,   // health of a wall tile / gate; at 0 it breaks and Builders rebuild it
@@ -300,7 +305,10 @@ window.AV_SETTINGS = {
   },
   skills: {
     aimTime: 15,
-    radiusPerRing: 0.25,   // every ring the field grows adds this much to every skill's radius   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
+    radiusPerRing: 0.25,   // every ring the field grows adds this much to every skill's radius
+    unroad: {
+      tiles: 10,   // the Remove Roads skill clears up to this many road tiles the player taps
+    },   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
     fire: {
       radius: 1.5,   // every enemy this close to the tapped point catches fire
       damagePerSecond: 20,   // Идеи 2026-11-24: x4 (was 5)
