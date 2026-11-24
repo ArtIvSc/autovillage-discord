@@ -265,9 +265,9 @@ window.AV_SETTINGS = {
     },
   },
   food: {
-    start: 30,   // food the village starts with
-    every: 40,   // each villager eats once every N s ...
-    builder: 1,   // ... this much food (per villager type)
+    // Идеи 2026-11-24 (rework): no hunger. Food stays at the Farm it grew on; while the next crop grows the Farmer
+    // treats villagers with it: a treat costs this much food (per villager type) ...
+    builder: 1,
     knight: 2,
     jailer: 1,
     medic: 1,
@@ -276,7 +276,14 @@ window.AV_SETTINGS = {
     commander: 2,
     heavyKnight: 3,
     farmer: 1,
-    hungry: 0.7,   // a hungry villager's speed, damage and work speed are multiplied by this until it eats
+    duration: 30,   // ... and lasts this long:
+    fighterBonus: 1.5,   // fighters (Knight, Archer, Assassin, Commander, Heavy Knight) hit this much harder
+    workerBonus: 1.5,   // everyone else runs this much faster
+  },
+  roads: {
+    work: 3,   // time a Builder needs to pave one tile (idle Builders pave free tiles next to buildings)
+    speed: 1.5,   // villagers walk this much faster on a road
+    hp: 20,   // a road tile's health: enemies walking on it wear it down (their damage per action), meteors hit it; idle Builders repair it
   },
   skills: {
     aimTime: 15,   // a picked skill waits this long for the player to tap the spot (the choice timer keeps running), then disappears
