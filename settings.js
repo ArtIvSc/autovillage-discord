@@ -12,6 +12,28 @@ window.AV_SETTINGS = {
   },
   choice: {
     interval: 15,   // a new pair of choice buttons every N s; an unanswered pair fires one option at random
+    weights: {   // Идеи 2026-11-25: how often each option comes up in the pair (relative weights; 0 = never)
+      builderHouse: 3,
+      knightHouse: 3,
+      hospital: 2,
+      jail: 2,
+      turret: 2,
+      archerTower: 2,
+      hideout: 1.5,
+      commandPost: 1,
+      farm: 2,
+      well: 1.5,
+      tavern: 1,
+      wall: 0.5,   // rarer (the idea's example)
+      meteor: 1,
+      plague: 1,
+      quake: 1,
+      fire: 1,
+      freeze: 1,
+      lightning: 1,
+      unroad: 0.5,
+      move: 0.7,
+    },
   },
   waves: {
     first: 1,   // first wave warning at this time
@@ -49,6 +71,10 @@ window.AV_SETTINGS = {
       shaman: {
         from: 5,
         share: 0.1,
+      },
+      ship: {   // Идеи 2026-11-25: the Flying Ship
+        from: 6,
+        share: 0.04,
       },
     },
   },
@@ -172,6 +198,13 @@ window.AV_SETTINGS = {
       every: 2,   // ... every N s
       range: 2,   // from this distance
     },
+    ship: {   // Идеи 2026-11-25: flies over walls and drops enemies in the village; only arrows (Archers, Turrets) and skills reach it
+      hp: 60,
+      speed: 0.15,
+      size: 1.6,
+      carryMin: 4,   // it lands (or is shot down) and lets out carryMin ... carryMax enemies (no Golems)
+      carryMax: 7,
+    },
   },
   actions: {
     interval: 1,   // every unit hits / builds / repairs once per N s
@@ -214,6 +247,11 @@ window.AV_SETTINGS = {
     commandPost: {
       hp: 40,
       shelter: 3,
+    },
+    tavern: {   // Идеи 2026-11-25 (culture): villagers near it get more XP
+      hp: 30,
+      radius: 3,   // villagers within this many tiles of a finished Tavern ...
+      xpNear: 0.25,   // ... get this much more XP (on top of the Town Hall / Castle bonus)
     },
     well: {
       hp: 30,
@@ -314,7 +352,24 @@ window.AV_SETTINGS = {
     decisionEvery: [30, 60],   // a new decision every 30-60 s
     decisionTime: 20,   // time to answer; then the second answer (refuse / decline / ignore) happens
     leash: 8,   // fighters only go after enemies this close to their own village; workers only work inside it
-    autoBuild: {   // weights of the buildings that come by themselves
+    // Идеи 2026-11-25: fighters of one type group into squads that move together, go further and are dragged as one
+    squadMin: 3,   // a squad forms once this many free fighters of one type live in one village ...
+    squadMax: 15,   // ... and holds at most this many
+    squadLeash: 16,   // squads go after enemies this far from their village
+    squadFight: 3,   // squad members fight enemies this close to their leader, otherwise keep formation
+    enemySquadMin: 10,   // phase-2 wave enemies come in squads of this many ...
+    enemySquadMax: 20,   // ... to this many, one enemy type per squad (they can't be dragged)
+    budget: {   // Идеи 2026-11-25: default shares (%) of what is built by itself; the player sets them in the Budget panel
+      military: 50,
+      food: 35,
+      culture: 15,
+    },
+    groups: {   // which buildings each budget share pays for
+      military: ['knightHouse', 'archerTower', 'hideout', 'commandPost', 'jail', 'turret', 'wall'],
+      food: ['farm', 'well', 'builderHouse', 'hospital'],
+      culture: ['tavern'],
+    },
+    autoBuild: {   // weights of the buildings that come by themselves (within their budget share)
       builderHouse: 2,
       knightHouse: 2,
       archerTower: 2,
@@ -325,6 +380,8 @@ window.AV_SETTINGS = {
       turret: 2,
       farm: 2,
       well: 1,
+      tavern: 1,
+      wall: 0.3,   // a new stone wall ring
     },
   },
   water: {   // Идеи 2026-11-24: the Well and its Water Carrier (like the Farm and the Farmer; portions = food portions)
@@ -332,9 +389,13 @@ window.AV_SETTINGS = {
     duration: 30,   // a drink lasts this long ...
     heal: 1,   // ... and heals this many HP per second
   },
-  wall: {   // built after the Castle appears (on a new outer ring; it stays when the village grows further)
-    hp: 80,   // health of a wall tile / gate; at 0 it breaks and Builders rebuild it
-    work: 4,   // time a Builder needs to build one wall tile (and to repair a broken-down one to full)
+  wall: {   // a ring of wall on a new outer ring (Wall choice, the Castle, phase-2 budget); it stays when the village grows further
+    hp: 80,   // health of a stone wall tile / gate; at 0 it breaks and Builders rebuild it
+    work: 4,   // time a Builder needs to build one stone wall tile (and to repair a broken-down one to full)
+    wood: {   // Идеи 2026-11-25: walls before the Castle are wooden (they stay wooden)
+      hp: 40,
+      work: 2,
+    },
     gatesMin: 1,   // gates per side: villagers pass, enemies don't
     gatesMax: 3,
   },
