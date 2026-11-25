@@ -124,6 +124,11 @@ window.AV_SETTINGS = {
       every: 1.5,   // ... every N s
       size: 1.7,
     },
+    waterCarrier: {
+      hp: 40,
+      sight: 99,
+      speed: 0.4,
+    },
     farmer: {
       hp: 40,
       sight: 99,
@@ -210,6 +215,11 @@ window.AV_SETTINGS = {
       hp: 40,
       shelter: 3,
     },
+    well: {
+      hp: 30,
+      rate: 1,   // water per second, filling by itself ...
+      cap: 100,   // ... up to this much
+    },
     farm: {
       hp: 40,
       size: 2,   // tiles per side
@@ -293,9 +303,34 @@ window.AV_SETTINGS = {
     hp: 20,   // a road tile's health (roads are no longer damaged by enemies or meteors since 2026-11-24)
   },
   towns: {   // new villages (Идеи 2026-11-24): once the wall is finished, Builders lay a road from a gate to a new village
-    roadLength: 15,   // tiles of road from the gate
+    roadMin: 10,   // the road from a gate is a random length from roadMin ...
+    roadMax: 30,   // ... to roadMax tiles (Идеи 2026-11-24)
     startSize: 2,   // a new village starts as N x N tiles at the end of the road and grows by rings as buildings are placed
-    nextAt: 6,   // when the newest village has grown to N x N, the next road starts from another gate
+    sizeMin: 5,   // its largest size is random from sizeMin x sizeMin ...
+    sizeMax: 15,   // ... to sizeMax x sizeMax (rounded to even sizes 6 ... 14: villages grow by rings of 2); when reached, the next road starts
+  },
+  phase2: {   // Идеи 2026-11-24: after the Castle the game becomes a realm — buildings by themselves, the bar shows decisions
+    buildEvery: [15, 30],   // a new building (site) every 15-30 s
+    decisionEvery: [30, 60],   // a new decision every 30-60 s
+    decisionTime: 20,   // time to answer; then the second answer (refuse / decline / ignore) happens
+    leash: 8,   // fighters only go after enemies this close to their own village; workers only work inside it
+    autoBuild: {   // weights of the buildings that come by themselves
+      builderHouse: 2,
+      knightHouse: 2,
+      archerTower: 2,
+      hideout: 1,
+      commandPost: 1,
+      jail: 1,
+      hospital: 1,
+      turret: 2,
+      farm: 2,
+      well: 1,
+    },
+  },
+  water: {   // Идеи 2026-11-24: the Well and its Water Carrier (like the Farm and the Farmer; portions = food portions)
+    carry: 6,   // water per bucket
+    duration: 30,   // a drink lasts this long ...
+    heal: 1,   // ... and heals this many HP per second
   },
   wall: {   // built after the Castle appears (on a new outer ring; it stays when the village grows further)
     hp: 80,   // health of a wall tile / gate; at 0 it breaks and Builders rebuild it
