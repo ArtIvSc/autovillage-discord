@@ -347,7 +347,8 @@ window.AV_SETTINGS = {
     sizeMin: 5,   // its largest size is random from sizeMin x sizeMin ...
     sizeMax: 15,   // ... to sizeMax x sizeMax (rounded to even sizes 6 ... 14: villages grow by rings of 2); when reached, the next road starts
   },
-  phase2: {   // Идеи 2026-11-24: after the Castle the game becomes a realm — buildings by themselves, the bar shows decisions
+  phase2: {   // realm phase: buildings come by themselves, the bar shows decisions
+    startVillages: 3,   // founded villages beyond the capital needed to start the realm phase
     buildEvery: [15, 30],   // a new building (site) every 15-30 s
     decisionEvery: [30, 60],   // a new decision every 30-60 s
     decisionTime: 20,   // time to answer; then the second answer (refuse / decline / ignore) happens
@@ -365,7 +366,7 @@ window.AV_SETTINGS = {
       culture: 15,
     },
     groups: {   // which buildings each budget share pays for
-      military: ['knightHouse', 'archerTower', 'hideout', 'commandPost', 'jail', 'turret', 'wall'],
+      military: ['knightHouse', 'archerTower', 'hideout', 'commandPost', 'jail', 'turret'],
       food: ['farm', 'well', 'builderHouse', 'hospital'],
       culture: ['tavern'],
     },
@@ -381,7 +382,6 @@ window.AV_SETTINGS = {
       farm: 2,
       well: 1,
       tavern: 1,
-      wall: 0.3,   // a new stone wall ring
     },
   },
   water: {   // Идеи 2026-11-24: the Well and its Water Carrier (like the Farm and the Farmer; portions = food portions)
