@@ -13,3 +13,9 @@ canvas{display:block;width:100%;height:100%}
 .panel label{display:block;text-align:left;margin:14px 0;font-size:16px}
 .panel input[type=range]{width:100%;accent-color:#e02b2b}
 .ver{font-size:12px;opacity:.8;margin-top:10px}
+.panel input[type=text]{box-sizing:border-box;width:100%;margin:6px 0;padding:9px 10px;font:inherit;font-size:19px;color:#3b2a14;text-shadow:none;background:#fff7e2;
+  border:2px solid #8a5a2b;border-radius:6px;user-select:text;-webkit-user-select:text}
+.msg{min-height:20px;font-size:14px;color:#ffe066;text-align:left}
+.top{list-style:none;margin:6px 0;padding:0;font-size:17px;text-align:left}
+.top li{display:flex;justify-content:space-between;padding:4px 2px;border-bottom:1px solid rgba(255,255,255,.18)}
+.top li.me{color:#ffe066}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>AutoVillage</title>
-<link rel="stylesheet" href="game.css?v=8c91e275">
+<link rel="stylesheet" href="game.css?v=286a1c0c">
 </head>
 <body>
 <canvas id="c"></canvas>
@@ -13,6 +13,7 @@
     <h1>AutoVillage</h1>
     <button id="bPlay">Play</button>
     <button id="bCont">Continue</button>
+    <button id="bTop">Leaderboard</button>
     <button data-go="pSet">Settings</button>
     <button data-go="pAbout">About</button>
     <div class="ver">v0.3 · web</div>
@@ -21,6 +22,7 @@
     <h2>Settings</h2>
     <label>Music <span id="vMusic"></span><input type="range" id="sMusic" min="0" max="100"></label>
     <label>Sound effects <span id="vSfx"></span><input type="range" id="sSfx" min="0" max="100"></label>
+    <button id="bNickSet">Nickname</button>
     <button data-back>Back</button>
   </div>
   <div class="panel" id="pAbout">
@@ -47,6 +49,21 @@
     <label>Culture <span id="vCult"></span><input type="range" id="bCult" min="0" max="100"></label>
     <button id="bBudgetOk">Done</button>
   </div>
+  <div class="panel" id="pNick">
+    <h2>Your nickname</h2>
+    <p>Shown on the weekly leaderboard. Letters A–Z only, 3–20 long.</p>
+    <input type="text" id="iNick" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="DarkKnight">
+    <div class="msg" id="nickMsg"></div>
+    <button id="bNickOk">Save</button>
+    <button id="bNickSkip">Play without a nickname</button>
+  </div>
+  <div class="panel" id="pTop">
+    <h2>Best of the week</h2>
+    <ul class="top" id="topList"></ul>
+    <div class="msg" id="topMsg"></div>
+    <div class="ver" id="topWeek"></div>
+    <button data-back>Back</button>
+  </div>
   <div class="panel" id="pPause">
     <h2>Paused</h2>
     <button id="bResume">Continue game</button>
@@ -55,7 +72,7 @@
   </div>
 </div>
 <script src="discord.js?v=2ca6ccca"></script>
-<script src="settings.js?v=03212359"></script>
-<script src="game.js?v=e1f6b663"></script>
+<script src="settings.js?v=98874b30"></script>
+<script src="game.js?v=10444816"></script>
 </body>
 </html>

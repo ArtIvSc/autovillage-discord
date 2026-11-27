@@ -1,4 +1,4 @@
-// AutoVillage — game settings. Edit a value, save the file, reload the game (F5).
+﻿// AutoVillage — game settings. Edit a value, save the file, reload the game (F5).
 // F3 (developer menu) -> "Game settings" edits these live and can save / download a new copy of this file.
 // Times are in seconds, distances in tiles, speeds in tiles per second, shares from 0 to 1.
 window.AV_SETTINGS = {
@@ -418,5 +418,8 @@ window.AV_SETTINGS = {
       radius: 1.2,
       damage: 160,   // instant damage to every enemy in the radius (Идеи 2026-11-24: x4, was 40)
     },
+  },
+  online: {   // 2026-11-27: nickname + weekly leaderboard (best wave, weeks in Amsterdam time) on the Cloudflare Worker
+    api: '',   // the Worker address (the workers.dev one, no slash at the end); empty = offline. Inside Discord the game always uses Discord's /api mapping
   },
 };
