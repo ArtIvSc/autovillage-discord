@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>AutoVillage</title>
-<link rel="stylesheet" href="game.css?v=286a1c0c">
+<link rel="stylesheet" href="game.css?v=da4bbe00">
 </head>
 <body>
 <canvas id="c"></canvas>
 <div id="ui">
-  <div class="panel" id="pMenu">
+  <div class="panel menuCompact" id="pMenu">
     <div id="offlineMenu">
       <h1>AutoVillage</h1>
       <button id="bPlay">Play</button>
@@ -23,20 +23,23 @@
       <form id="rankedPlay">
         <input type="text" id="iNick" aria-label="Nickname" aria-describedby="nickRules" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="DarkKnight">
         <div class="msg" id="nickMsg" role="status"></div>
-        <button id="bRankedPlay" type="submit">Play</button>
-        <button id="bNickSkip" type="button">Play without a nickname</button>
+        <div class="rankedActions">
+          <button id="bRankedPlay" type="submit">Play</button>
+          <button id="bNickSkip" type="button">Play without a nickname</button>
+        </div>
       </form>
-      <button id="bTop">Leaderboard</button>
-      <button data-go="pSet">Settings</button>
+      <div class="rankedLinks">
+        <button id="bTop">Leaderboard</button>
+        <button data-go="pSet">Settings</button>
+      </div>
     </div>
     <div class="ver">v0.3 · web</div>
   </div>
-  <div class="panel" id="pSet">
+  <div class="panel menuCompact" id="pSet">
     <h2>Settings</h2>
     <label>Music <span id="vMusic"></span><input type="range" id="sMusic" min="0" max="100"></label>
     <label>Sound effects <span id="vSfx"></span><input type="range" id="sSfx" min="0" max="100"></label>
     <div id="rankedSettings" hidden>
-      <div id="rankedRestart" hidden><button data-go="pConfirm">New game</button></div>
       <button data-go="pAbout">About</button>
     </div>
     <button data-back>Back</button>
@@ -51,10 +54,16 @@
     <p>Drag villagers and enemies: wounded units to the Hospital, Cyclopes to the Jail, frightened villagers into houses.</p>
     <button data-back>Back</button>
   </div>
-  <div class="panel" id="pConfirm">
+  <div class="panel menuCompact" id="pConfirm">
     <h2>Start a new village?</h2>
     <p>Your saved village will be lost.</p>
     <button id="bNew">Start over</button>
+    <button data-back>Cancel</button>
+  </div>
+  <div class="panel menuCompact" id="pRestart">
+    <h2>Restart game?</h2>
+    <p>Your current village and its saved progress will be lost.</p>
+    <button id="bDoRestart">Restart</button>
     <button data-back>Cancel</button>
   </div>
   <div class="panel" id="pBudget">
@@ -71,15 +80,16 @@
     <div class="msg" id="topMsg"></div>
     <button data-back>Back</button>
   </div>
-  <div class="panel" id="pPause">
+  <div class="panel menuCompact" id="pPause">
     <h2>Paused</h2>
     <button id="bResume">Continue game</button>
+    <button data-go="pRestart">Restart</button>
     <button data-go="pSet">Settings</button>
     <button id="bToMenu">Main menu</button>
   </div>
 </div>
 <script src="discord.js?v=2ca6ccca"></script>
 <script src="settings.js?v=98874b30"></script>
-<script src="game.js?v=b9d88ef0"></script>
+<script src="game.js?v=27b848a4"></script>
 </body>
 </html>
