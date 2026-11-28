@@ -31,6 +31,7 @@ window.AV_SETTINGS = {
       fire: 1,
       freeze: 1,
       lightning: 1,
+      celestial: 0.3,
       unroad: 0.5,
       move: 0.7,
     },
@@ -412,7 +413,7 @@ window.AV_SETTINGS = {
     },
     freeze: {
       radius: 1.5,
-      duration: 5,   // frozen enemies can't move or attack
+      duration: 10,   // frozen enemies can't move or attack
     },
     lightning: {
       radius: 1.2,
